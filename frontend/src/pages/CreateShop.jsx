@@ -1,3 +1,4 @@
+import { API_BASE_URL } from '../config';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useShop } from '../context/ShopContext';
@@ -14,7 +15,7 @@ const CreateShop = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('/api/shops', {
+      const response = await fetch(`${API_BASE_URL}/api/shops`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

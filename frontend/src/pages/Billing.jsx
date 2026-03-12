@@ -1,3 +1,4 @@
+import { API_BASE_URL } from '../config';
 import React, { useState, useEffect, useRef } from 'react';
 import { Search, Plus, Minus, Trash2, Printer, CheckCircle, Loader2, X, ShoppingCart, CreditCard, Banknote, Smartphone, Package } from 'lucide-react';
 import { useShop } from '../context/ShopContext';
@@ -35,8 +36,8 @@ const Billing = () => {
       const token = localStorage.getItem('token');
       const headers = { Authorization: `Bearer ${token}` };
       const [prodRes, profileRes] = await Promise.all([
-        fetch(`/api/products?shopId=${activeShopId}`, { headers }),
-        fetch(`/api/shops/${activeShopId}`, { headers }),
+        fetch(`${API_BASE_URL}/api/products?shopId=${activeShopId}`, { headers }),
+        fetch(`${API_BASE_URL}/api/shops/${activeShopId}`, { headers }),
       ]);
       if (!prodRes.ok) throw new Error('Failed to fetch products');
       setProducts(await prodRes.json());
@@ -139,7 +140,7 @@ const Billing = () => {
         packageLabel: i.packageLabel || null,   // null = loose; string = which packaging stock to deduct
         pkgQuantity:  i.pkgQuantity || 0,
       }));
-      const res = await fetch('/api/bills', {
+      const res = await fetch(`${API_BASE_URL}/api/bills`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
         body: JSON.stringify({ billItems, paymentMethod, totalPrice: total, shopId: activeShopId }),

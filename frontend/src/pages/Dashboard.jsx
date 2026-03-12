@@ -1,3 +1,4 @@
+import { API_BASE_URL } from '../config';
 import React, { useState, useEffect } from 'react';
 import { TrendingUp, Package, AlertCircle, Loader2 } from 'lucide-react';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid } from 'recharts';
@@ -29,7 +30,7 @@ const Dashboard = () => {
         const token = localStorage.getItem('token');
         
         // Fetch analytics
-        const analyticsRes = await fetch(`/api/analytics?shopId=${activeShopId}`, {
+        const analyticsRes = await fetch(`${API_BASE_URL}/api/analytics?shopId=${activeShopId}`, {
           headers: { 'Authorization': `Bearer ${token}` }
         });
         
@@ -39,7 +40,7 @@ const Dashboard = () => {
         setData(analyticsData);
 
         // Use dedicated low-stock endpoint (threshold: stock < 5)
-        const lowStockRes = await fetch(`/api/products/low-stock?shopId=${activeShopId}`, {
+        const lowStockRes = await fetch(`${API_BASE_URL}/api/products/low-stock?shopId=${activeShopId}`, {
           headers: { 'Authorization': `Bearer ${token}` }
         });
         if (!lowStockRes.ok) throw new Error('Failed to fetch low stock');

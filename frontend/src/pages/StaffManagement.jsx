@@ -1,3 +1,4 @@
+import { API_BASE_URL } from '../config';
 import React, { useState, useEffect } from 'react';
 import { UserPlus, User, Mail, Lock, Loader2, Trash2 } from 'lucide-react';
 import { useShop } from '../context/ShopContext';
@@ -17,7 +18,7 @@ const StaffManagement = () => {
     if (!activeShopId) return;
     setIsLoading(true);
     try {
-      const res = await fetch(`/api/staff?shopId=${activeShopId}`, {
+      const res = await fetch(`${API_BASE_URL}/api/staff?shopId=${activeShopId}`, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       });
       if (!res.ok) throw new Error('Failed to fetch staff');
@@ -46,7 +47,7 @@ const StaffManagement = () => {
     setSuccess('');
     
     try {
-      const res = await fetch('/api/staff', {
+      const res = await fetch(`${API_BASE_URL}/api/staff`, {
         method: 'POST',
         headers: { 
           'Content-Type': 'application/json',
@@ -73,7 +74,7 @@ const StaffManagement = () => {
   const handleDelete = async (id) => {
     if (!window.confirm("Are you sure you want to remove this staff member?")) return;
     try {
-      const res = await fetch(`/api/staff/${id}?shopId=${activeShopId}`, {
+      const res = await fetch(`${API_BASE_URL}/api/staff/${id}?shopId=${activeShopId}`, {
         method: 'DELETE',
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       });

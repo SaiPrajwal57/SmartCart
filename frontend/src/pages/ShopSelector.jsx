@@ -1,3 +1,4 @@
+import { API_BASE_URL } from '../config';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useShop } from '../context/ShopContext';
@@ -13,7 +14,7 @@ const ShopSelector = () => {
   useEffect(() => {
     const fetchShops = async () => {
       try {
-        const response = await fetch('/api/shops', {
+        const response = await fetch(`${API_BASE_URL}/api/shops`, {
           headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
         });
         const data = await response.json();

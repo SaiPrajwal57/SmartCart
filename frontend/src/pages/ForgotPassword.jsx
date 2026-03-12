@@ -1,3 +1,4 @@
+import { API_BASE_URL } from '../config';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Mail, ShoppingCart, ArrowRight, Loader2, Copy, Check, KeyRound } from 'lucide-react';
@@ -16,7 +17,7 @@ const ForgotPassword = () => {
         setIsLoading(true);
 
         try {
-            const res = await fetch('/api/auth/forgot-password', {
+            const res = await fetch(`${API_BASE_URL}/api/auth/forgot-password`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ email }),

@@ -1,3 +1,4 @@
+import { API_BASE_URL } from '../config';
 import { useState } from 'react';
 import { useNavigate, useParams, Link } from 'react-router-dom';
 import { Lock, ShoppingCart, ArrowRight, Loader2, CheckCircle } from 'lucide-react';
@@ -27,7 +28,7 @@ const ResetPassword = () => {
 
         setIsLoading(true);
         try {
-            const res = await fetch(`/api/auth/reset-password/${resetToken}`, {
+            const res = await fetch(`${API_BASE_URL}/api/auth/reset-password/${resetToken}`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ password }),

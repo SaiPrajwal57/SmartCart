@@ -1,3 +1,4 @@
+import { API_BASE_URL } from '../config';
 import React, { useState, useEffect } from 'react';
 import { User, Store, MapPin, Phone, Save, Loader2, CheckCircle2 } from 'lucide-react';
 import { useShop } from '../context/ShopContext';
@@ -23,7 +24,7 @@ const Profile = () => {
         const token = getToken();
         let name = '', shopName = '', address = '', phone = '';
 
-        const resProfile = await fetch('/api/profile', {
+        const resProfile = await fetch(`${API_BASE_URL}/api/profile`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         if (resProfile.ok) {
@@ -36,7 +37,7 @@ const Profile = () => {
         }
 
         if (activeShopId && (role === 'owner' || role === 'admin')) {
-          const resShop = await fetch(`/api/shops/${activeShopId}`, {
+          const resShop = await fetch(`${API_BASE_URL}/api/shops/${activeShopId}`, {
             headers: { Authorization: `Bearer ${token}` },
           });
           if (resShop.ok) {
@@ -71,7 +72,7 @@ const Profile = () => {
       const headers = { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` };
 
       // 1. Update Profile (User Name)
-      const resProfile = await fetch('/api/profile', {
+      const resProfile = await fetch(`${API_BASE_URL}/api/profile`, {
         method: 'PUT',
         headers,
         body: JSON.stringify({ name: form.name }),
@@ -83,7 +84,7 @@ const Profile = () => {
 
       // 2. Update Shop Profile if Owner
       if (activeShopId && (role === 'owner' || role === 'admin')) {
-        const resShop = await fetch(`/api/shops/${activeShopId}`, {
+        const resShop = await fetch(`${API_BASE_URL}/api/shops/${activeShopId}`, {
           method: 'PUT',
           headers,
           body: JSON.stringify({ shopName: form.shopName, address: form.address, phone: form.phone }),

@@ -1,3 +1,4 @@
+import { API_BASE_URL } from '../config';
 import React, { useState, useEffect } from 'react';
 import { ReceiptText, Loader2, RefreshCcw, Calendar, ChevronDown, ChevronUp } from 'lucide-react';
 import { useShop } from '../context/ShopContext';
@@ -18,7 +19,7 @@ const SalesHistory = () => {
     if (!activeShopId) return;
     setIsLoading(true); setError(null);
     try {
-      const res = await fetch(`/api/bills?shopId=${activeShopId}`, {
+      const res = await fetch(`${API_BASE_URL}/api/bills?shopId=${activeShopId}`, {
         headers: { Authorization: `Bearer ${getToken()}` },
       });
       if (!res.ok) throw new Error('Failed to fetch sales history');

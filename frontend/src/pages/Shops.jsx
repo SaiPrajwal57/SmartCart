@@ -1,3 +1,4 @@
+import { API_BASE_URL } from '../config';
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Store, Plus, MapPin, Phone, Loader2, ArrowRight } from 'lucide-react';
@@ -14,7 +15,7 @@ const Shops = () => {
   const fetchShops = async () => {
     setIsLoading(true);
     try {
-      const res = await fetch('/api/shops', {
+      const res = await fetch(`${API_BASE_URL}/api/shops`, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       });
       if (!res.ok) throw new Error('Failed to fetch shops');

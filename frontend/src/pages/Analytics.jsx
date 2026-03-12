@@ -1,3 +1,4 @@
+import { API_BASE_URL } from '../config';
 import React, { useState, useEffect } from 'react';
 import {
   BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid,
@@ -31,10 +32,10 @@ const Analytics = () => {
         const h = { Authorization: `Bearer ${token}` };
         const params = `?shopId=${activeShopId}`;
         const [r1, r2, r3, r4] = await Promise.all([
-          fetch(`/api/analytics/most-sold${params}`,    { headers: h }),
-          fetch(`/api/analytics/least-sold${params}`,   { headers: h }),
-          fetch(`/api/analytics/daily-sales${params}`,  { headers: h }),
-          fetch(`/api/analytics/monthly-sales${params}`,{ headers: h }),
+          fetch(`${API_BASE_URL}/api/analytics/most-sold${params}`,    { headers: h }),
+          fetch(`${API_BASE_URL}/api/analytics/least-sold${params}`,   { headers: h }),
+          fetch(`${API_BASE_URL}/api/analytics/daily-sales${params}`,  { headers: h }),
+          fetch(`${API_BASE_URL}/api/analytics/monthly-sales${params}`,{ headers: h }),
         ]);
         if (!r1.ok || !r2.ok || !r3.ok || !r4.ok) throw new Error('Failed to load analytics');
 

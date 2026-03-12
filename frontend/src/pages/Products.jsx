@@ -1,3 +1,4 @@
+import { API_BASE_URL } from '../config';
 import React, { useState, useEffect } from 'react';
 import { Search, Edit, Trash2, Loader2, RefreshCcw, Plus, X, Package, ChevronDown, ChevronUp } from 'lucide-react';
 import { useShop } from '../context/ShopContext';
@@ -62,7 +63,7 @@ const Products = () => {
     if (!activeShopId) return;
     setIsLoading(true); setError(null);
     try {
-      const res = await fetch(`/api/products?shopId=${activeShopId}`, { headers: { Authorization: `Bearer ${getToken()}` } });
+      const res = await fetch(`${API_BASE_URL}/api/products?shopId=${activeShopId}`, { headers: { Authorization: `Bearer ${getToken()}` } });
       if (!res.ok) throw new Error('Failed to fetch products');
       setProducts(await res.json());
     } catch (err) { setError(err.message); }
@@ -140,7 +141,7 @@ const Products = () => {
   const handleDelete = async (id) => {
     if (!window.confirm('Delete this product?')) return;
     try {
-      const res = await fetch(`/api/products/${id}?shopId=${activeShopId}`, {
+      const res = await fetch(`${API_BASE_URL}/api/products/${id}?shopId=${activeShopId}`, {
         method: 'DELETE', headers: { Authorization: `Bearer ${getToken()}` },
       });
       if (!res.ok) throw new Error('Failed to delete product');

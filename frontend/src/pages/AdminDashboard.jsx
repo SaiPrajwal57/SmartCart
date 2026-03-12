@@ -1,3 +1,4 @@
+import { API_BASE_URL } from '../config';
 import React, { useState, useEffect } from 'react';
 import { ShieldCheck, Store, Package, ReceiptText, TrendingUp, Trash2, Loader2, RefreshCcw, AlertCircle } from 'lucide-react';
 import './AdminDashboard.css';
@@ -16,8 +17,8 @@ const AdminDashboard = () => {
     try {
       const h = { Authorization: `Bearer ${getToken()}` };
       const [sr, shopR] = await Promise.all([
-        fetch('/api/admin/stats', { headers: h }),
-        fetch('/api/admin/shops', { headers: h }),
+        fetch(`${API_BASE_URL}/api/admin/stats`, { headers: h }),
+        fetch(`${API_BASE_URL}/api/admin/shops`, { headers: h }),
       ]);
       if (!sr.ok || !shopR.ok) {
         throw new Error(sr.status === 401 || shopR.status === 401
@@ -36,7 +37,7 @@ const AdminDashboard = () => {
     if (!window.confirm(`Delete shop "${shopName}" and ALL its data? This cannot be undone.`)) return;
     setDeleting(shopId);
     try {
-      const res = await fetch(`/api/admin/shop/${shopId}`, {
+      const res = await fetch(`${API_BASE_URL}/api/admin/shop/${shopId}`, {
         method: 'DELETE',
         headers: { Authorization: `Bearer ${getToken()}` },
       });

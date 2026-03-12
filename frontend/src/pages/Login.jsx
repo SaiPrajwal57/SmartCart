@@ -1,3 +1,4 @@
+import { API_BASE_URL } from '../config';
 import { useState, useMemo } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
@@ -43,7 +44,7 @@ const Login = () => {
 
         setIsLoading(true);
 
-        const endpoint = isLogin ? '/api/auth/login' : '/api/auth/register';
+        const endpoint = isLogin ? `${API_BASE_URL}/api/auth/login` : `${API_BASE_URL}/api/auth/register`;
         const payload = isLogin
             ? { email, password }
             : { name, email, password, ...(adminKey ? { adminKey } : {}) };
