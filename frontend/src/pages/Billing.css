@@ -1,0 +1,667 @@
+.billing-container {
+  height: 100%;
+}
+
+.panel-fadeIn {
+  animation: fadeIn 0.4s ease-out forwards;
+  opacity: 0;
+}
+
+.billing-grid {
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  gap: 24px;
+  height: calc(100vh - 120px);
+}
+
+/* Products Selection Area */
+.products-selection {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  background: var(--bg-light);
+  border: 1px solid var(--border-color);
+  padding: 12px 16px;
+  border-radius: var(--radius-md);
+  margin-bottom: 24px;
+}
+
+.search-box input {
+  background: transparent;
+  width: 100%;
+  border: none;
+  font-size: 1rem;
+  margin-left: 12px;
+  color: var(--text-main);
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 16px;
+  overflow-y: auto;
+  padding-right: 8px;
+}
+
+.product-item {
+  background: var(--bg-light);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+}
+
+.product-item:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+  border-color: var(--accent-primary);
+}
+
+.prod-info h4 {
+  margin-bottom: 4px;
+  color: var(--text-main);
+}
+
+.prod-price {
+  color: var(--accent-primary);
+  font-weight: 600;
+}
+
+.add-btn {
+  background: var(--gradient-primary);
+  color: white;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Current Bill Area */
+.current-bill {
+  display: flex;
+  flex-direction: column;
+}
+
+.bill-items {
+  flex: 1;
+  overflow-y: auto;
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  border-bottom: 1px dashed var(--border-color);
+  padding-bottom: 16px;
+}
+
+.bill-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--bg-light);
+  padding: 12px;
+  border-radius: var(--radius-md);
+}
+
+.item-details h4 {
+  font-size: 0.95rem;
+  color: var(--text-main);
+}
+
+.item-unit-price {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.item-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.qty-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--bg-card);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-color);
+}
+
+.qty-btn {
+  background: transparent;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-main);
+}
+
+.qty-btn:hover {
+  background: var(--bg-light);
+}
+
+.item-total {
+  font-weight: 600;
+  width: 60px;
+  text-align: right;
+}
+
+.delete-btn {
+  background: transparent;
+  color: var(--accent-danger);
+  padding: 4px;
+  opacity: 0.6;
+}
+
+.delete-btn:hover {
+  opacity: 1;
+}
+
+/* Summary Area */
+.bill-summary {
+  padding-top: 24px;
+}
+
+.total-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 24px;
+}
+
+.bill-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-weight: 600;
+  border-radius: var(--radius-md);
+  transition: opacity 0.2s, transform 0.15s;
+}
+
+.btn:hover { opacity: 0.9; }
+.btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.btn-large {
+  width: 100%;
+  padding: 14px 0;
+  font-size: 1rem;
+}
+
+.btn-primary {
+  background: var(--gradient-primary);
+  color: white;
+  box-shadow: 0 4px 12px rgba(20,184,166,0.3);
+}
+
+.btn-secondary {
+  background: var(--accent-secondary);
+  color: white;
+}
+
+/* ── Product item enhancements ── */
+.out-of-stock {
+  opacity: 0.5;
+  cursor: not-allowed !important;
+}
+
+.stock-badge {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #16a34a;
+  background: #f0fdf4;
+  padding: 2px 6px;
+  border-radius: 999px;
+  margin-top: 4px;
+}
+
+.stock-badge.low {
+  color: #dc2626;
+  background: #fef2f2;
+}
+
+/* ── Empty cart ── */
+.empty-cart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 0;
+  color: #94a3b8;
+  gap: 8px;
+}
+
+.empty-cart p {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.empty-cart span {
+  font-size: 0.8rem;
+}
+
+/* ── Bill Modal ── */
+.bill-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(5px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: modalFadeIn 0.15s ease;
+}
+
+@keyframes modalFadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+.bill-modal-card {
+  background: #fff;
+  border-radius: var(--radius-xl);
+  box-shadow: 0 25px 50px -12px rgba(0,0,0,0.4);
+  width: 100%;
+  max-width: 480px;
+  padding: 1.75rem;
+  animation: modalSlideUp 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes modalSlideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+
+/* Modal Header */
+.bill-modal-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 1.25rem;
+  color: var(--text-main);
+}
+
+.bill-modal-header h3 {
+  flex: 1;
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.success-header { color: #16a34a; }
+.success-icon { color: #16a34a; }
+
+.modal-x-btn {
+  background: var(--bg-light);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+}
+
+.modal-x-btn:hover { color: #dc2626; border-color: #dc2626; }
+
+/* Confirm items list */
+.confirm-items {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 200px;
+  overflow-y: auto;
+  margin-bottom: 1rem;
+}
+
+.confirm-item-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  color: var(--text-main);
+  background: var(--bg-light);
+  padding: 8px 12px;
+  border-radius: var(--radius-sm);
+}
+
+.confirm-item-name { color: var(--text-main); }
+.confirm-item-price { font-weight: 600; color: var(--accent-primary); }
+
+.confirm-total-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.25rem;
+  font-weight: 700;
+  background: var(--bg-light);
+  padding: 12px 16px;
+  border-radius: var(--radius-md);
+  margin-bottom: 1.25rem;
+  color: var(--text-main);
+}
+
+/* Payment method picker */
+.payment-method-section { margin-bottom: 1.5rem; }
+
+.payment-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.75rem;
+}
+
+.payment-methods-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.payment-method-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 14px 8px;
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-md);
+  background: var(--bg-light);
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.payment-method-btn:hover {
+  border-color: var(--accent-primary);
+  color: var(--accent-primary);
+  background: #f0fdfc;
+}
+
+.payment-method-btn.selected {
+  border-color: var(--accent-primary);
+  background: #f0fdfc;
+  color: var(--accent-primary);
+  box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.15);
+}
+
+/* Modal action buttons */
+.bill-modal-actions {
+  display: flex;
+  gap: 10px;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.btn-bill {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 0.75rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border-radius: var(--radius-md);
+  transition: all 0.2s;
+}
+
+.btn-bill:disabled { opacity: 0.6; cursor: not-allowed; }
+
+.btn-bill-primary {
+  background: var(--gradient-primary);
+  color: white;
+  box-shadow: 0 4px 10px rgba(20,184,166,0.25);
+}
+
+.btn-bill-primary:hover:not(:disabled) { transform: translateY(-1px); }
+
+.btn-bill-outline {
+  background: var(--bg-light);
+  color: var(--text-main);
+  border: 1px solid var(--border-color);
+}
+
+.btn-bill-outline:hover { background: var(--border-color); }
+
+/* ── Receipt ── */
+.receipt {
+  background: #fafafa;
+  border: 1px dashed #d1d5db;
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+  margin: 1rem 0;
+  font-family: monospace;
+}
+
+.receipt h2 {
+  text-align: center;
+  font-size: 1.1rem;
+  margin: 0 0 2px;
+}
+
+.receipt .sub {
+  text-align: center;
+  color: #64748b;
+  font-size: 0.75rem;
+  margin-bottom: 12px;
+}
+
+.receipt-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.78rem;
+  color: #64748b;
+  margin-bottom: 8px;
+}
+
+.receipt-divider {
+  border-top: 1px dashed #d1d5db;
+  margin: 8px 0;
+}
+
+.receipt-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.receipt-table td {
+  font-size: 0.82rem;
+  padding: 4px 0;
+}
+
+.receipt-total-row,
+.receipt-payment-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  padding: 4px 0;
+}
+
+.receipt-total-row {
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.receipt-footer {
+  text-align: center;
+  font-size: 0.78rem;
+  color: #94a3b8;
+  margin-top: 8px;
+}
+
+/* Bill modal error */
+.bill-modal-error {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #dc2626;
+  padding: 0.6rem 1rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
+  margin-bottom: 1rem;
+}
+
+/* Spinner */
+.spinner { animation: spin 1s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ── Products with packaging: stack vertically ── */
+.product-item.has-packaging {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  cursor: default;        /* no whole-card click; chips handle it */
+}
+
+.product-item.has-packaging:hover {
+  transform: none;        /* don't lift; chips have their own hover */
+  box-shadow: var(--shadow-sm);
+}
+
+/* ── Product meta row (price + category chip) ── */
+.prod-meta-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 4px;
+}
+
+.prod-category-chip {
+  font-size: 0.68rem;
+  font-weight: 600;
+  padding: 1px 6px;
+  border-radius: 999px;
+  background: #eff6ff;
+  color: #3b82f6;
+}
+
+/* ── Low stock danger badge ── */
+.stock-badge.danger {
+  color: #dc2626;
+  background: #fef2f2;
+}
+
+/* ── Packaging chips row ── */
+.pkg-options-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  width: 100%;
+}
+
+.pkg-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 5px 10px;
+  border-radius: var(--radius-sm);
+  font-size: 0.75rem;
+  font-weight: 600;
+  border: 1.5px solid var(--border-color);
+  background: var(--bg-card);
+  color: var(--text-main);
+  transition: all 0.15s;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.pkg-chip:hover {
+  border-color: var(--accent-primary);
+  background: #f0fdfc;
+  color: var(--accent-primary);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 6px rgba(20, 184, 166, 0.2);
+}
+
+/* Base/Loose chip has a slightly different tint */
+.pkg-chip-base {
+  border-color: #d1d5db;
+  background: var(--bg-light);
+  color: var(--text-muted);
+}
+
+.pkg-chip-base:hover {
+  border-color: var(--accent-secondary);
+  background: #f0f9ff;
+  color: var(--accent-secondary);
+}
+
+/* ── Loose quantity input in cart ── */
+.loose-qty-input-wrap {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--bg-card);
+  border: 1.5px solid var(--accent-primary);
+  border-radius: var(--radius-sm);
+  padding: 2px 8px;
+}
+
+.loose-qty-input {
+  width: 70px;
+  border: none;
+  background: transparent;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-main);
+  text-align: center;
+}
+
+.loose-qty-input::-webkit-inner-spin-button,
+.loose-qty-input::-webkit-outer-spin-button {
+  opacity: 1;
+}
+
+.loose-qty-unit {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--accent-primary);
+  white-space: nowrap;
+}
+
+/* ── Out-of-stock packaging chip ── */
+.pkg-chip-oos {
+  opacity: 0.45;
+  cursor: not-allowed !important;
+  border-color: #e2e8f0;
+}
+
+/* ── Per-chip stock count badge ── */
+.pkg-chip-stock {
+  display: inline-block;
+  margin-left: 5px;
+  padding: 0px 5px;
+  border-radius: 999px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  background: #f0fdf4;
+  color: #16a34a;
+}
+
+.pkg-chip-stock.low {
+  background: #fef2f2;
+  color: #ef4444;
+}
+
+
+
+

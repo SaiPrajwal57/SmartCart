@@ -1,0 +1,166 @@
+.analytics-page { height: 100%; }
+
+.analytics-page-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 1.5rem;
+}
+
+.analytics-page-header h2 {
+  font-size: 1.5rem;
+  color: var(--text-main);
+}
+
+.analytics-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+@media (max-width: 900px) {
+  .analytics-grid { grid-template-columns: 1fr; }
+}
+
+/* ── Hero / Best Sellers card ── */
+.analytics-hero {
+  display: flex;
+  flex-direction: row;
+  gap: 0;
+  padding: 0 !important;
+  overflow: hidden;
+  min-height: 340px;
+}
+
+.hero-stats {
+  flex: 1;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.hero-stats h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-main);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.pie-wrapper {
+  flex: 1;
+  min-height: 200px;
+  padding: 0.5rem;
+}
+
+/* ── Best seller list ── */
+.best-seller-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.best-seller-list li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  color: var(--text-main);
+}
+
+.num {
+  font-weight: 700;
+  color: var(--text-muted);
+  width: 20px;
+}
+
+.stat-value-sm {
+  margin-left: auto;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+/* ── Least sold list card ── */
+.analytics-list-card { padding: 1.5rem; }
+
+.an-card-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 1rem;
+}
+
+.an-card-header h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.an-product-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.an-product-list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.88rem;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.an-product-list li:last-child { border-bottom: none; }
+
+.an-name {
+  font-weight: 500;
+  color: var(--text-main);
+}
+
+.an-badge {
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.an-badge.danger { background: #fef2f2; color: #ef4444; }
+
+/* ── Charts ── */
+.chart-card {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.wide-card { grid-column: 1 / -1; }
+
+.chart-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.chart-header h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.chart-wrapper {
+  height: 220px;
+}
+
+/* Spinner */
+.spinner { animation: spin 1s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+@media (max-width: 640px) {
+  .analytics-hero { flex-direction: column; }
+  .pie-wrapper { min-height: 200px; }
+}

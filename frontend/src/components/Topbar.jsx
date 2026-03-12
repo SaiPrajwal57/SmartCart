@@ -1,0 +1,51 @@
+import React from 'react';
+import { User, LogOut } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
+import { useShop } from '../context/ShopContext';
+import './Topbar.css';
+
+const Topbar = () => {
+  const navigate = useNavigate();
+  const { user, logout, role } = useAuth();
+  const { activeShopName } = useShop();
+  const userName = user?.name || 'User';
+
+  const handleLogout = () => {
+    logout();
+    navigate('/login', { replace: true });
+  };
+
+  return (
+    <header className="topbar glass-panel">
+      {/* Search container removed */}
+      <div style={{ flex: 1, display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}>
+        {activeShopName && (
+          <span style={{ fontWeight: 'bold', fontSize: '1.1rem', color: '#1e293b' }}>
+            {activeShopName}
+            {(role === 'owner' || role === 'admin') && (
+              <span 
+                onClick={() => navigate('/app/shop-selector')} 
+                style={{ marginLeft: '10px', fontSize: '0.85rem', color: '#3b82f6', cursor: 'pointer', textDecoration: 'underline' }}>
+                (Switch)
+              </span>
+            )}
+          </span>
+        )}
+      </div>
+
+      <div className="topbar-actions">
+        {/* Bell icon removed, User button now navigates to profile */}
+        <button className="user-btn" onClick={() => navigate('/app/profile')} title="Go to Profile">
+          <User size={20} />
+          <span className="user-name">{userName}</span>
+        </button>
+        <button className="icon-btn" onClick={handleLogout} title="Logout" style={{color: '#ef4444'}}>
+          <LogOut size={20} />
+        </button>
+      </div>
+    </header>
+  );
+};
+
+export default Topbar;

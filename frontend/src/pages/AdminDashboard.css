@@ -1,0 +1,156 @@
+.admin-dashboard { height: 100%; }
+
+.admin-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.admin-icon { color: var(--accent-primary); }
+
+.admin-header h2 {
+  font-size: 1.5rem;
+  color: var(--text-main);
+}
+
+.admin-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+}
+
+.admin-error {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #ef4444;
+  padding: 1.25rem 1.5rem;
+  font-weight: 500;
+}
+
+/* ── Stats Grid ── */
+.admin-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+@media (max-width: 1024px) { .admin-stats-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width:  600px) { .admin-stats-grid { grid-template-columns: 1fr; } }
+
+.admin-stat-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 1.25rem 1.5rem;
+  animation: panel-fadeIn 0.3s ease both;
+}
+
+.admin-stat-icon {
+  width: 48px; height: 48px;
+  border-radius: var(--radius-md);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+
+.admin-stat-val {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--text-main);
+  line-height: 1;
+}
+
+.admin-stat-label {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-top: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+/* ── Shop Table Card ── */
+.admin-table-card {
+  animation: panel-fadeIn 0.35s ease both;
+}
+
+.admin-table-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+}
+
+.admin-table-header h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.shop-count-badge {
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: #eff6ff;
+  color: #3b82f6;
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.admin-table th,
+.admin-table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border-color);
+  color: var(--text-main);
+}
+
+.admin-table th {
+  font-weight: 600;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  color: var(--text-muted);
+  background: var(--bg-light);
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.admin-table tr:hover td { background: rgba(241,245,249,0.5); }
+
+.shop-name-cell {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+}
+
+.shop-row-icon { color: var(--text-muted); flex-shrink: 0; }
+
+.admin-delete-btn {
+  width: 32px; height: 32px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: var(--radius-sm);
+  background: #fef2f2;
+  color: #ef4444;
+  margin: 0 auto;
+  transition: background 0.15s;
+}
+
+.admin-delete-btn:hover:not(:disabled) { background: #fee2e2; }
+.admin-delete-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+/* Reuse spinner */
+.spinner { animation: spin 1s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.table-responsive {
+  overflow-x: auto;
+}
