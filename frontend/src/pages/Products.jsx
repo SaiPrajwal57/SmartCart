@@ -117,7 +117,7 @@ const Products = () => {
         })),
       };
 
-      const url    = editId ? `/api/products/${editId}` : '/api/products';
+      const url    = editId ? `${API_BASE_URL}/api/products/${editId}` : `${API_BASE_URL}/api/products`;
       const method = editId ? 'PUT' : 'POST';
 
       const res  = await fetch(url, {
