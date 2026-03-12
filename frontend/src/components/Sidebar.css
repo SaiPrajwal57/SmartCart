@@ -5,6 +5,8 @@
   display: flex;
   flex-direction: column;
   height: 100%;
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
 }
 
 .sidebar-header {
@@ -25,8 +27,22 @@
   letter-spacing: -0.5px;
 }
 
+/* Close button — hidden on desktop */
+.sidebar-close-btn {
+  display: none;
+  margin-left: auto;
+  background: transparent;
+  border: none;
+  color: #94a3b8;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 6px;
+}
+.sidebar-close-btn:hover { color: #e2e8f0; }
+
 .sidebar-nav {
   padding: 0 16px;
+  flex: 1;
 }
 
 .sidebar-nav ul {
@@ -59,4 +75,72 @@
 
 .nav-link svg {
   min-width: 20px;
+}
+
+/* Sidebar footer — profile + logout buttons, shown as mobile actions */
+.sidebar-footer {
+  display: none;
+  padding: 16px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  gap: 8px;
+  flex-direction: column;
+}
+
+.sidebar-footer-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: var(--radius-md);
+  background: transparent;
+  color: #94a3b8;
+  border: none;
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 500;
+  width: 100%;
+  transition: background 0.2s;
+}
+.sidebar-footer-btn:hover { background: rgba(255,255,255,0.05); color: #e2e8f0; }
+.sidebar-logout-btn:hover { background: rgba(239,68,68,0.12); color: #f87171; }
+
+/* Dark overlay behind sidebar on mobile */
+.sidebar-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 99;
+}
+
+/* ── Mobile ── */
+@media (max-width: 768px) {
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100dvh;
+    z-index: 100;
+    transform: translateX(-100%);
+    width: 260px;
+    box-shadow: 4px 0 20px rgba(0,0,0,0.3);
+  }
+
+  .sidebar.sidebar-open {
+    transform: translateX(0);
+  }
+
+  .sidebar-overlay {
+    display: block;
+  }
+
+  .sidebar-close-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .sidebar-footer {
+    display: flex;
+  }
 }

@@ -304,9 +304,19 @@
 .land-footer p { font-size: 0.85rem; color: #a0aec0; }
 
 /* ── Responsive ── */
+@media (max-width: 768px) {
+  .land-nav { padding: 1rem 4%; }
+  .land-section { padding: 4rem 5%; }
+  .land-hero { padding: 5rem 5% 3rem; }
+  .land-cta-banner { padding: 4rem 5%; }
+}
+
 @media (max-width: 640px) {
   .land-hero { padding: 5rem 5% 4rem; }
   .hero-card-float { gap: 1.5rem; padding: 1.2rem 1.5rem; }
   .hcf-divider { display: none; }
   .land-footer { flex-direction: column; text-align: center; }
+  .land-nav-actions .land-btn-ghost { display: none; }
+  .land-headline { font-size: 2.2rem; }
 }
+

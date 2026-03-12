@@ -1,11 +1,11 @@
 import React from 'react';
-import { User, LogOut } from 'lucide-react';
+import { User, LogOut, Menu } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { useShop } from '../context/ShopContext';
 import './Topbar.css';
 
-const Topbar = () => {
+const Topbar = ({ onMenuToggle }) => {
   const navigate = useNavigate();
   const { user, logout, role } = useAuth();
   const { activeShopName } = useShop();
@@ -18,7 +18,11 @@ const Topbar = () => {
 
   return (
     <header className="topbar glass-panel">
-      {/* Search container removed */}
+      {/* Hamburger – visible only on mobile via CSS */}
+      <button className="hamburger-btn" onClick={onMenuToggle} aria-label="Open menu">
+        <Menu size={22} />
+      </button>
+
       <div style={{ flex: 1, display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}>
         {activeShopName && (
           <span style={{ fontWeight: 'bold', fontSize: '1.1rem', color: '#1e293b' }}>
@@ -35,7 +39,6 @@ const Topbar = () => {
       </div>
 
       <div className="topbar-actions">
-        {/* Bell icon removed, User button now navigates to profile */}
         <button className="user-btn" onClick={() => navigate('/app/profile')} title="Go to Profile">
           <User size={20} />
           <span className="user-name">{userName}</span>

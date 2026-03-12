@@ -662,6 +662,56 @@
   color: #ef4444;
 }
 
+/* ── Mobile ── */
+@media (max-width: 768px) {
+  .billing-grid {
+    grid-template-columns: 1fr;
+    height: auto;
+    gap: 16px;
+  }
+
+  .products-grid {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    max-height: 320px;
+    overflow-y: auto;
+  }
+
+  .current-bill {
+    max-height: none;
+  }
+
+  .bill-items {
+    max-height: 240px;
+  }
+
+  .bill-modal-card {
+    width: 95vw;
+    max-width: 95vw;
+    padding: 1.25rem;
+    max-height: 90dvh;
+    overflow-y: auto;
+  }
+
+  .payment-methods-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .bill-modal-actions {
+    flex-direction: column;
+  }
+
+  .btn-bill { width: 100%; }
+}
+
+@media (max-width: 480px) {
+  .products-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .total-row { font-size: 1.2rem; }
+}
+
+
 
 
 

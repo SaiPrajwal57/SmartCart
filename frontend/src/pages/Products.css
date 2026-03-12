@@ -528,7 +528,54 @@
 /* Responsive */
 @media (max-width: 768px) {
   .modal-form-row { grid-template-columns: 1fr; }
+  .modal-form-row-3 { grid-template-columns: 1fr; }
   .packaging-row { grid-template-columns: 1fr 1fr; }
   .packaging-row > *:last-child { grid-column: 1 / -1; }
+
+  .full-height-card {
+    height: auto;
+    min-height: calc(100dvh - 160px);
+  }
+
+  .products-header {
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .products-actions {
+    flex-wrap: wrap;
+    gap: 8px;
+    width: 100%;
+  }
+
+  .small-search {
+    width: 100%;
+    flex: 1;
+  }
+
+  .table-responsive {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .modal-card, .modal-card-wide {
+    width: 95vw;
+    max-width: 95vw;
+    max-height: 90dvh;
+    overflow-y: auto;
+    padding: 1.25rem;
+  }
+
+  .modal-overlay {
+    padding: 0.5rem;
+    align-items: flex-end;
+  }
+
+  .modal-actions {
+    flex-direction: column;
+  }
+  .modal-actions .btn { width: 100%; justify-content: center; }
 }
+
 

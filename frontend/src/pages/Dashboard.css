@@ -213,3 +213,22 @@
   height: 200px;
   width: 100%;
 }
+
+/* ── Mobile ── */
+@media (max-width: 768px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .hero-card { grid-column: span 1; }
+  .wide-card  { grid-column: span 1; }
+  .list-card-tall { grid-row: span 1; }
+  .hero-card h1 { font-size: 1.8rem; }
+  .stat-value h2 { font-size: 1.5rem; }
+}
+
+@media (max-width: 480px) {
+  .hero-card h1 { font-size: 1.5rem; }
+  .alerts-container { flex-direction: column; }
+}
+

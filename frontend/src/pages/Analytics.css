@@ -163,4 +163,12 @@
 @media (max-width: 640px) {
   .analytics-hero { flex-direction: column; }
   .pie-wrapper { min-height: 200px; }
+  .analytics-page-header { flex-wrap: wrap; }
+  .chart-wrapper { height: 180px; }
 }
+
+@media (max-width: 768px) {
+  .analytics-grid { grid-template-columns: 1fr; }
+  .wide-card { grid-column: span 1; }
+}
+

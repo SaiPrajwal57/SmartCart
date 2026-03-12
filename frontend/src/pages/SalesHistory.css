@@ -234,4 +234,8 @@
   .bill-card-right  { width: 100%; justify-content: space-between; }
   .sh-search-box    { width: 100%; }
   .sales-header     { flex-direction: column; align-items: flex-start; }
+  .sales-controls   { width: 100%; flex-wrap: wrap; }
+  .bill-card-body   { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .bill-info-chips  { flex-wrap: wrap; }
 }
+

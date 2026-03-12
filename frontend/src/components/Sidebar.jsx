@@ -1,14 +1,14 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { ShoppingCart, LayoutDashboard, ReceiptText, Package, TrendingUp, PieChart, UserCircle, ShieldCheck } from 'lucide-react';
+import { ShoppingCart, LayoutDashboard, ReceiptText, Package, TrendingUp, PieChart, UserCircle, ShieldCheck, X, LogOut, User } from 'lucide-react';
 import './Sidebar.css';
 
-const Sidebar = () => {
-  const { role } = useAuth();
+const Sidebar = ({ isOpen, onClose }) => {
+  const { role, user, logout } = useAuth();
+  const navigate = useNavigate();
   const isAdmin = role === 'admin';
   const isOwner = role === 'owner';
-  const isStaff = role === 'staff';
 
   const navItems = isAdmin 
     ? [
@@ -26,30 +26,57 @@ const Sidebar = () => {
         ] : []),
       ];
 
-  return (
-    <aside className="sidebar">
-      <div className="sidebar-header">
-        <ShoppingCart className="logo-icon" size={28} />
-        <h2 className="logo-text">SmartCart</h2>
-      </div>
+  const handleNavClick = () => { if (onClose) onClose(); };
 
-      <nav className="sidebar-nav">
-        <ul>
-          {navItems.map((item) => (
-            <li key={item.path}>
-              <NavLink
-                to={item.path}
-                end={item.path === '/app'}
-                className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}
-              >
-                {item.icon}
-                <span>{item.name}</span>
-              </NavLink>
-            </li>
-          ))}
-        </ul>
-      </nav>
-    </aside>
+  const handleLogout = () => {
+    logout();
+    navigate('/login', { replace: true });
+  };
+
+  return (
+    <>
+      {/* Overlay for mobile */}
+      {isOpen && <div className="sidebar-overlay" onClick={onClose} />}
+
+      <aside className={`sidebar${isOpen ? ' sidebar-open' : ''}`}>
+        <div className="sidebar-header">
+          <ShoppingCart className="logo-icon" size={28} />
+          <h2 className="logo-text">SmartCart</h2>
+          {/* Close button on mobile */}
+          <button className="sidebar-close-btn" onClick={onClose} aria-label="Close menu">
+            <X size={22} />
+          </button>
+        </div>
+
+        <nav className="sidebar-nav">
+          <ul>
+            {navItems.map((item) => (
+              <li key={item.path}>
+                <NavLink
+                  to={item.path}
+                  end={item.path === '/app'}
+                  className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}
+                  onClick={handleNavClick}
+                >
+                  {item.icon}
+                  <span>{item.name}</span>
+                </NavLink>
+              </li>
+            ))}
+          </ul>
+        </nav>
+
+        {/* Mobile-only user actions at bottom of sidebar */}
+        <div className="sidebar-footer">
+          <button className="sidebar-footer-btn" onClick={() => { navigate('/app/profile'); handleNavClick(); }}>
+            <User size={18} /> <span>{user?.name || 'Profile'}</span>
+          </button>
+          <button className="sidebar-footer-btn sidebar-logout-btn" onClick={handleLogout}>
+            <LogOut size={18} /> <span>Logout</span>
+          </button>
+        </div>
+      </aside>
+    </>
   );
 };
 
